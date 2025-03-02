@@ -1,17 +1,47 @@
 package com.company.springapi;
 
-//UC4
+//UC5
 import org.springframework.web.bind.annotation.*;
 
-@RestController  // Marks this class as a REST Controller
-@RequestMapping("/hello")  // Base URL for all API calls
+@RestController
+@RequestMapping("/hello")
 public class HelloController {
 
-    @PostMapping("/post")  // Handles POST request
-    public String sayHello(@RequestBody UserDTO user) {
-        return "Hello " + user.getFirstName() + " " + user.getLastName() + " from BridgeLabz!";
+    @PutMapping("/put/{firstName}")
+    public String putHello(@PathVariable String firstName, @RequestParam String lastName) {
+        return "Hello " + firstName + " " + lastName + " from BridgeLabz!";
     }
 }
+//curl -X PUT "http://localhost:8080/hello/put/Mark?lastName=Taylor" -w "\n" on cmd,terminal
+
+// Alternative: Test in Browser (Postman)
+//Open Postman.
+//Set Method to PUT.
+//Enter URL:
+//bash
+//Copy
+//Edit
+//http://localhost:8080/hello/put/Mark?lastName=Taylor
+//Click Send.
+
+//for powershell terminal
+//Invoke-WebRequest -Uri "http://localhost:8080/hello/put/Mark?lastName=Taylor" `
+//-Method Put `
+//-UseBasicParsing
+
+
+//UC4
+//import org.springframework.web.bind.annotation.*;
+//
+//@RestController  // Marks this class as a REST Controller
+//@RequestMapping("/hello")  // Base URL for all API calls
+//public class HelloController {
+//
+//    @PostMapping("/post")  // Handles POST request
+//    public String sayHello(@RequestBody UserDTO user) {
+//        return "Hello " + user.getFirstName() + " " + user.getLastName() + " from BridgeLabz!";
+//    }
+//}
 //Invoke-WebRequest -Uri "http://localhost:8080/hello/post" `
 //-Method POST `
 //-Headers @{"Content-Type"="application/json"} `
