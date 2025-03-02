@@ -1,20 +1,66 @@
 package com.company.springapi;
 
-//UC3
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+//UC4
+import org.springframework.web.bind.annotation.*;
 
 @RestController  // Marks this class as a REST Controller
 @RequestMapping("/hello")  // Base URL for all API calls
 public class HelloController {
 
-    @GetMapping("/param/{name}")  // Handles GET request with a path variable
-    public String sayHello(@PathVariable String name) {
-        return "Hello " + name + " from BridgeLabz!";
+    @PostMapping("/post")  // Handles POST request
+    public String sayHello(@RequestBody UserDTO user) {
+        return "Hello " + user.getFirstName() + " " + user.getLastName() + " from BridgeLabz!";
     }
 }
+//Invoke-WebRequest -Uri "http://localhost:8080/hello/post" `
+//-Method POST `
+//-Headers @{"Content-Type"="application/json"} `
+//-Body '{"firstName": "Anshita", "lastName": "Agrawal"}' `
+//-UseBasicParsing
+
+//Using Postman
+//Use Postman
+//Open Postman.
+//Set method to POST.
+//Enter URL:
+//bash
+//Copy
+//Edit
+//http://localhost:8080/hello/post
+//Go to Body → Raw → JSON.
+//Paste:
+//json
+//Copy
+//Edit
+//{
+//  "firstName": "Mark",
+//  "lastName": "Taylor"
+//}
+//Click Send.
+//Expected Output
+//If your Spring Boot application is running, the response should be:
+//
+//css
+//Copy
+//Edit
+//Hello Mark Taylor from BridgeLabz!
+//Make sure your Spring Boot application is running before executing the command.
+
+//UC3
+//import org.springframework.web.bind.annotation.GetMapping;
+//import org.springframework.web.bind.annotation.PathVariable;
+//import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RestController;
+//
+//@RestController  // Marks this class as a REST Controller
+//@RequestMapping("/hello")  // Base URL for all API calls
+//public class HelloController {
+//
+//    @GetMapping("/param/{name}")  // Handles GET request with a path variable
+//    public String sayHello(@PathVariable String name) {
+//        return "Hello " + name + " from BridgeLabz!";
+//    }
+//}
 //curl localhost:8080/hello/param/Anshita -w "\n"
 
 
